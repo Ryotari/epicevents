@@ -1,6 +1,6 @@
 from django.db import models
 from users.models import Client
-from django.contrib.auth.models import User
+from users.models import User
 
 class Event(models.Model):
 

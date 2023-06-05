@@ -1,6 +1,6 @@
 from rest_framework.viewsets import ModelViewSet
 from rest_framework.permissions import IsAuthenticated
-
+from epicevents.permissions import IsManager, IsSales, IsSupport
 from .serializers import EventListSerializer, EventDetailSerializer
 from .models import Event
 
@@ -12,11 +12,11 @@ class EventViewset(ModelViewSet):
     def get_permissions(self):
         permission_classes = []
         if self.action == 'create':
-            permission_classes = [IsAuthenticated]
+            permission_classes = [IsManager, IsSales]
         elif self.action == 'update' or self.action == 'partial_update':
-            permission_classes = [IsAuthenticated]
+            permission_classes = [IsManager, IsSales, IsSupport]
         elif self.action == 'destroy':
-            permission_classes = [IsAuthenticated]
+            permission_classes = [IsManager]
         return [permission() for permission in permission_classes]
 
     def get_queryset(self):

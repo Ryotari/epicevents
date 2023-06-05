@@ -1,7 +1,5 @@
 from django.db import models
-from users.models import Client
-from django.contrib.auth.models import User
-
+from users.models import Client, User
 
 class Contract(models.Model):
 
